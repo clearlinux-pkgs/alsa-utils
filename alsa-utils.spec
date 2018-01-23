@@ -4,7 +4,7 @@
 #
 Name     : alsa-utils
 Version  : 1.1.5
-Release  : 11
+Release  : 12
 URL      : ftp://ftp.alsa-project.org/pub/utils/alsa-utils-1.1.5.tar.bz2
 Source0  : ftp://ftp.alsa-project.org/pub/utils/alsa-utils-1.1.5.tar.bz2
 Summary  : No detailed summary available
@@ -16,6 +16,7 @@ Requires: alsa-utils-autostart
 Requires: alsa-utils-data
 Requires: alsa-utils-locales
 Requires: alsa-utils-doc
+Requires: dialog
 BuildRequires : alsa-lib-dev
 BuildRequires : docbook-xml
 BuildRequires : fftw-dev
@@ -90,7 +91,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1510755588
+export SOURCE_DATE_EPOCH=1516716117
 %configure --disable-static
 make  %{?_smp_mflags}
 
@@ -102,7 +103,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1510755588
+export SOURCE_DATE_EPOCH=1516716117
 rm -rf %{buildroot}
 %make_install
 %find_lang alsa-utils
