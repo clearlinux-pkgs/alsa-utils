@@ -4,7 +4,7 @@
 #
 Name     : alsa-utils
 Version  : 1.1.5
-Release  : 12
+Release  : 13
 URL      : ftp://ftp.alsa-project.org/pub/utils/alsa-utils-1.1.5.tar.bz2
 Source0  : ftp://ftp.alsa-project.org/pub/utils/alsa-utils-1.1.5.tar.bz2
 Summary  : No detailed summary available
