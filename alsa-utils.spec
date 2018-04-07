@@ -4,7 +4,7 @@
 #
 Name     : alsa-utils
 Version  : 1.1.6
-Release  : 14
+Release  : 15
 URL      : ftp://ftp.alsa-project.org/pub/utils/alsa-utils-1.1.6.tar.bz2
 Source0  : ftp://ftp.alsa-project.org/pub/utils/alsa-utils-1.1.6.tar.bz2
 Summary  : No detailed summary available
@@ -28,6 +28,7 @@ BuildRequires : pkgconfig(systemd)
 BuildRequires : sed
 BuildRequires : util-linux
 BuildRequires : xmlto
+Patch1: mkdir.patch
 
 %description
 Advanced Linux Sound Architecture - Utilities
@@ -85,13 +86,14 @@ locales components for the alsa-utils package.
 
 %prep
 %setup -q -n alsa-utils-1.1.6
+%patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1522797330
+export SOURCE_DATE_EPOCH=1523121071
 %configure --disable-static
 make  %{?_smp_mflags}
 
@@ -103,7 +105,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1522797330
+export SOURCE_DATE_EPOCH=1523121071
 rm -rf %{buildroot}
 %make_install
 %find_lang alsa-utils
