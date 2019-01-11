@@ -1,0 +1,30 @@
+From 34b1179ad7cd7012498b44b706ba6d593b104bd3 Mon Sep 17 00:00:00 2001
+From: Thiago Macieira <thiago.macieira@intel.com>
+Date: Thu, 10 Jan 2019 15:44:25 -0800
+Subject: [PATCH] Disable the axfer tool
+
+This tool has not been properly tested by upstream prior to
+release. Its test is missing a header (won't compile) and even if I
+add it, the test freezes.
+
+Signed-off-by: Thiago Macieira <thiago.macieira@intel.com>
+---
+ Makefile.am | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Makefile.am b/Makefile.am
+index 20dcfc8..c9f4aad 100644
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -14,7 +14,7 @@ if ALSACONF
+ SUBDIRS += alsaconf
+ endif
+ if HAVE_PCM
+-SUBDIRS += aplay iecset speaker-test axfer
++SUBDIRS += aplay iecset speaker-test
+ if ALSALOOP
+ SUBDIRS += alsaloop
+ endif
+-- 
+2.20.0
+

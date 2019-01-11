@@ -1,2 +1,4 @@
+Configure miss: dlopen in -lc
 Configure miss: samplerate.h
+Configure miss: ffado_streaming_init in -lffado
 Configure miss: rst2man
