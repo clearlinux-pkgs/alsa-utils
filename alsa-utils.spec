@@ -4,10 +4,10 @@
 #
 Name     : alsa-utils
 Version  : 1.1.8
-Release  : 19
+Release  : 20
 URL      : ftp://ftp.alsa-project.org/pub/utils/alsa-utils-1.1.8.tar.bz2
 Source0  : ftp://ftp.alsa-project.org/pub/utils/alsa-utils-1.1.8.tar.bz2
-Summary  : No detailed summary available
+Summary  : An alternative implementation of Linux sound support
 Group    : Development/Tools
 License  : GPL-2.0
 Requires: alsa-utils-autostart = %{version}-%{release}
@@ -27,6 +27,7 @@ BuildRequires : docutils
 BuildRequires : fftw-dev
 BuildRequires : gettext-bin
 BuildRequires : glibc-staticdev
+BuildRequires : libsamplerate-dev
 BuildRequires : libtool
 BuildRequires : libtool-dev
 BuildRequires : libxml2-dev
@@ -61,7 +62,6 @@ Group: Binaries
 Requires: alsa-utils-data = %{version}-%{release}
 Requires: alsa-utils-config = %{version}-%{release}
 Requires: alsa-utils-license = %{version}-%{release}
-Requires: alsa-utils-man = %{version}-%{release}
 Requires: alsa-utils-services = %{version}-%{release}
 
 %description bin
@@ -126,7 +126,8 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1547167549
+export SOURCE_DATE_EPOCH=1553455821
+export LDFLAGS="${LDFLAGS} -fno-lto"
 %reconfigure --disable-static
 make  %{?_smp_mflags}
 
@@ -138,7 +139,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1547167549
+export SOURCE_DATE_EPOCH=1553455821
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/alsa-utils
 cp COPYING %{buildroot}/usr/share/package-licenses/alsa-utils/COPYING
@@ -215,6 +216,8 @@ cp COPYING %{buildroot}/usr/share/package-licenses/alsa-utils/COPYING
 /usr/share/man/man1/alsactl.1
 /usr/share/man/man1/alsaloop.1
 /usr/share/man/man1/alsamixer.1
+/usr/share/man/man1/alsatplg.1
+/usr/share/man/man1/alsaucm.1
 /usr/share/man/man1/amidi.1
 /usr/share/man/man1/amixer.1
 /usr/share/man/man1/aplay.1

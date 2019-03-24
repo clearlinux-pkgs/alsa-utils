@@ -1,6 +1,7 @@
 1.1.8
 docutils
 glibc-staticdev
+libsamplerate-dev
 libxml2-dev
 libxslt-bin
 util-linux
