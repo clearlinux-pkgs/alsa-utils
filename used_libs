@@ -1,6 +1,5 @@
 libasound.so.2
 libc.so.6
-libdl.so.2
 libfftw3f.so.3
 libformw.so.6
 libgcc_s.so.1
@@ -9,6 +8,5 @@ libmenuw.so.6
 libncursesw.so.6
 libpanelw.so.6
 libpthread.so.0
-librt.so.1
 libsamplerate.so.0
 libtinfow.so.6
