@@ -4,7 +4,7 @@
 #
 Name     : alsa-utils
 Version  : 1.1.9
-Release  : 21
+Release  : 22
 URL      : ftp://ftp.alsa-project.org/pub/utils/alsa-utils-1.1.9.tar.bz2
 Source0  : ftp://ftp.alsa-project.org/pub/utils/alsa-utils-1.1.9.tar.bz2
 Summary  : An alternative implementation of Linux sound support
