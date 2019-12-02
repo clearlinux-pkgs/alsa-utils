@@ -5,8 +5,8 @@
 Name     : alsa-utils
 Version  : 1.2.1
 Release  : 23
-URL      : ftp://ftp.alsa-project.org/pub/utils/alsa-utils-1.2.1.tar.bz2
-Source0  : ftp://ftp.alsa-project.org/pub/utils/alsa-utils-1.2.1.tar.bz2
+URL      : https://www.alsa-project.org/files/pub/utils/alsa-utils-1.2.1.tar.bz2
+Source0  : https://www.alsa-project.org/files/pub/utils/alsa-utils-1.2.1.tar.bz2
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0
