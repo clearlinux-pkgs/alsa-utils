@@ -1,2 +1,4 @@
+Configure miss: 32-bit host C ABI
+Configure miss: CFLocaleCopyPreferredLanguages
 Configure miss: dlopen in -lc
 Configure miss: ffado_streaming_init in -lffado

@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x8380596DA6E59C91 (release@alsa-project.org)
 #
 Name     : alsa-utils
-Version  : 1.2.4
-Release  : 26
-URL      : https://www.alsa-project.org/files/pub/utils/alsa-utils-1.2.4.tar.bz2
-Source0  : https://www.alsa-project.org/files/pub/utils/alsa-utils-1.2.4.tar.bz2
-Source1  : https://www.alsa-project.org/files/pub/utils/alsa-utils-1.2.4.tar.bz2.sig
+Version  : 1.2.5
+Release  : 27
+URL      : https://www.alsa-project.org/files/pub/utils/alsa-utils-1.2.5.tar.bz2
+Source0  : https://www.alsa-project.org/files/pub/utils/alsa-utils-1.2.5.tar.bz2
+Source1  : https://www.alsa-project.org/files/pub/utils/alsa-utils-1.2.5.tar.bz2.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0
@@ -120,8 +120,8 @@ services components for the alsa-utils package.
 
 
 %prep
-%setup -q -n alsa-utils-1.2.4
-cd %{_builddir}/alsa-utils-1.2.4
+%setup -q -n alsa-utils-1.2.5
+cd %{_builddir}/alsa-utils-1.2.5
 %patch1 -p1
 %patch2 -p1
 
@@ -130,7 +130,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1603480071
+export SOURCE_DATE_EPOCH=1622494466
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -150,10 +150,10 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1603480071
+export SOURCE_DATE_EPOCH=1622494466
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/alsa-utils
-cp %{_builddir}/alsa-utils-1.2.4/COPYING %{buildroot}/usr/share/package-licenses/alsa-utils/68c94ffc34f8ad2d7bfae3f5a6b996409211c1b1
+cp %{_builddir}/alsa-utils-1.2.5/COPYING %{buildroot}/usr/share/package-licenses/alsa-utils/68c94ffc34f8ad2d7bfae3f5a6b996409211c1b1
 %make_install
 %find_lang alsa-utils
 %find_lang alsaconf
