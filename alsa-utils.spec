@@ -6,7 +6,7 @@
 #
 Name     : alsa-utils
 Version  : 1.2.5
-Release  : 27
+Release  : 28
 URL      : https://www.alsa-project.org/files/pub/utils/alsa-utils-1.2.5.tar.bz2
 Source0  : https://www.alsa-project.org/files/pub/utils/alsa-utils-1.2.5.tar.bz2
 Source1  : https://www.alsa-project.org/files/pub/utils/alsa-utils-1.2.5.tar.bz2.sig
@@ -45,6 +45,7 @@ BuildRequires : sed
 BuildRequires : xmlto
 Patch1: mkdir.patch
 Patch2: 0001-Disable-the-axfer-tool.patch
+Patch3: 0002-alsactl-fix-the-nested-iteration.patch
 
 %description
 # alsa-utils
@@ -124,13 +125,14 @@ services components for the alsa-utils package.
 cd %{_builddir}/alsa-utils-1.2.5
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1622494466
+export SOURCE_DATE_EPOCH=1622571856
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -150,7 +152,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1622494466
+export SOURCE_DATE_EPOCH=1622571856
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/alsa-utils
 cp %{_builddir}/alsa-utils-1.2.5/COPYING %{buildroot}/usr/share/package-licenses/alsa-utils/68c94ffc34f8ad2d7bfae3f5a6b996409211c1b1

@@ -1,2 +1,3 @@
 mkdir.patch
 0001-Disable-the-axfer-tool.patch
+0002-alsactl-fix-the-nested-iteration.patch

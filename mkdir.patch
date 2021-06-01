@@ -1,8 +1,10 @@
---- alsa-utils-1.1.6/alsactl/state.c~	2018-04-03 07:01:37.000000000 +0000
-+++ alsa-utils-1.1.6/alsactl/state.c	2018-04-07 17:08:52.609459237 +0000
-@@ -1546,6 +1546,8 @@
- 	char *nfile = NULL;
+diff --git a/alsactl/state.c b/alsactl/state.c
+index 44fda3f..ce5802a 100644
+--- a/alsactl/state.c
++++ b/alsactl/state.c
+@@ -1546,6 +1546,8 @@ int save_state(const char *file, const char *cardname)
  	int lock_fd = -EINVAL;
+ 	struct snd_card_iterator iter;
  
 +	mkdir("/var/lib/alsa", 0600);
 +

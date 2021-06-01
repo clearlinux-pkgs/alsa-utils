@@ -1,4 +1,4 @@
-From 34b1179ad7cd7012498b44b706ba6d593b104bd3 Mon Sep 17 00:00:00 2001
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: Thiago Macieira <thiago.macieira@intel.com>
 Date: Thu, 10 Jan 2019 15:44:25 -0800
 Subject: [PATCH] Disable the axfer tool
@@ -25,6 +25,3 @@ index 20dcfc8..c9f4aad 100644
  if ALSALOOP
  SUBDIRS += alsaloop
  endif
--- 
-2.20.0
-
