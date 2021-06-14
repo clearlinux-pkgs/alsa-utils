@@ -1,5 +1,5 @@
 PKG_NAME := alsa-utils
-URL = https://www.alsa-project.org/files/pub/utils/alsa-utils-1.2.5.tar.bz2
+URL = https://www.alsa-project.org/files/pub/utils/alsa-utils-1.2.5.1.tar.bz2
 ARCHIVES = 
 
 include ../common/Makefile.common
