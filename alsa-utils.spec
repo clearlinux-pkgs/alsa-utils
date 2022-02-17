@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x8380596DA6E59C91 (release@alsa-project.org)
 #
 Name     : alsa-utils
-Version  : 1.2.5.1
-Release  : 29
-URL      : https://www.alsa-project.org/files/pub/utils/alsa-utils-1.2.5.1.tar.bz2
-Source0  : https://www.alsa-project.org/files/pub/utils/alsa-utils-1.2.5.1.tar.bz2
-Source1  : https://www.alsa-project.org/files/pub/utils/alsa-utils-1.2.5.1.tar.bz2.sig
+Version  : 1.2.6
+Release  : 30
+URL      : https://www.alsa-project.org/files/pub/utils/alsa-utils-1.2.6.tar.bz2
+Source0  : https://www.alsa-project.org/files/pub/utils/alsa-utils-1.2.6.tar.bz2
+Source1  : https://www.alsa-project.org/files/pub/utils/alsa-utils-1.2.6.tar.bz2.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0
@@ -25,12 +25,10 @@ Requires: dialog
 BuildRequires : alsa-lib-dev
 BuildRequires : automake
 BuildRequires : automake-dev
-BuildRequires : dialog
 BuildRequires : docbook-xml
 BuildRequires : docutils
 BuildRequires : fftw-dev
 BuildRequires : gettext-bin
-BuildRequires : glibc-staticdev
 BuildRequires : libsamplerate-dev
 BuildRequires : libtool
 BuildRequires : libtool-dev
@@ -120,8 +118,8 @@ services components for the alsa-utils package.
 
 
 %prep
-%setup -q -n alsa-utils-1.2.5.1
-cd %{_builddir}/alsa-utils-1.2.5.1
+%setup -q -n alsa-utils-1.2.6
+cd %{_builddir}/alsa-utils-1.2.6
 %patch1 -p1
 %patch2 -p1
 
@@ -130,15 +128,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1623691946
+export SOURCE_DATE_EPOCH=1645057481
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
 %reconfigure --disable-static
 make  %{?_smp_mflags}
 
@@ -150,10 +148,10 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1623691946
+export SOURCE_DATE_EPOCH=1645057481
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/alsa-utils
-cp %{_builddir}/alsa-utils-1.2.5.1/COPYING %{buildroot}/usr/share/package-licenses/alsa-utils/68c94ffc34f8ad2d7bfae3f5a6b996409211c1b1
+cp %{_builddir}/alsa-utils-1.2.6/COPYING %{buildroot}/usr/share/package-licenses/alsa-utils/68c94ffc34f8ad2d7bfae3f5a6b996409211c1b1
 %make_install
 %find_lang alsa-utils
 %find_lang alsaconf
