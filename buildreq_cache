@@ -1,5 +1,5 @@
 1.2.6
-docutils
 libsamplerate-dev
 libxml2-dev
 libxslt-bin
+pypi-docutils

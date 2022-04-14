@@ -6,7 +6,7 @@
 #
 Name     : alsa-utils
 Version  : 1.2.6
-Release  : 30
+Release  : 31
 URL      : https://www.alsa-project.org/files/pub/utils/alsa-utils-1.2.6.tar.bz2
 Source0  : https://www.alsa-project.org/files/pub/utils/alsa-utils-1.2.6.tar.bz2
 Source1  : https://www.alsa-project.org/files/pub/utils/alsa-utils-1.2.6.tar.bz2.sig
@@ -26,7 +26,6 @@ BuildRequires : alsa-lib-dev
 BuildRequires : automake
 BuildRequires : automake-dev
 BuildRequires : docbook-xml
-BuildRequires : docutils
 BuildRequires : fftw-dev
 BuildRequires : gettext-bin
 BuildRequires : libsamplerate-dev
@@ -39,6 +38,7 @@ BuildRequires : pkg-config-dev
 BuildRequires : pkgconfig(ncurses)
 BuildRequires : pkgconfig(ncursesw)
 BuildRequires : pkgconfig(systemd)
+BuildRequires : pypi-docutils
 BuildRequires : sed
 BuildRequires : xmlto
 Patch1: mkdir.patch
@@ -128,7 +128,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1645057481
+export SOURCE_DATE_EPOCH=1649965237
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -148,7 +148,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1645057481
+export SOURCE_DATE_EPOCH=1649965237
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/alsa-utils
 cp %{_builddir}/alsa-utils-1.2.6/COPYING %{buildroot}/usr/share/package-licenses/alsa-utils/68c94ffc34f8ad2d7bfae3f5a6b996409211c1b1
