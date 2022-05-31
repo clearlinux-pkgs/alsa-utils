@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x8380596DA6E59C91 (release@alsa-project.org)
 #
 Name     : alsa-utils
-Version  : 1.2.6
-Release  : 31
-URL      : https://www.alsa-project.org/files/pub/utils/alsa-utils-1.2.6.tar.bz2
-Source0  : https://www.alsa-project.org/files/pub/utils/alsa-utils-1.2.6.tar.bz2
-Source1  : https://www.alsa-project.org/files/pub/utils/alsa-utils-1.2.6.tar.bz2.sig
+Version  : 1.2.7
+Release  : 32
+URL      : https://www.alsa-project.org/files/pub/utils/alsa-utils-1.2.7.tar.bz2
+Source0  : https://www.alsa-project.org/files/pub/utils/alsa-utils-1.2.7.tar.bz2
+Source1  : https://www.alsa-project.org/files/pub/utils/alsa-utils-1.2.7.tar.bz2.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0
@@ -17,6 +17,7 @@ Requires: alsa-utils-autostart = %{version}-%{release}
 Requires: alsa-utils-bin = %{version}-%{release}
 Requires: alsa-utils-config = %{version}-%{release}
 Requires: alsa-utils-data = %{version}-%{release}
+Requires: alsa-utils-lib = %{version}-%{release}
 Requires: alsa-utils-license = %{version}-%{release}
 Requires: alsa-utils-locales = %{version}-%{release}
 Requires: alsa-utils-man = %{version}-%{release}
@@ -85,6 +86,16 @@ Group: Data
 data components for the alsa-utils package.
 
 
+%package lib
+Summary: lib components for the alsa-utils package.
+Group: Libraries
+Requires: alsa-utils-data = %{version}-%{release}
+Requires: alsa-utils-license = %{version}-%{release}
+
+%description lib
+lib components for the alsa-utils package.
+
+
 %package license
 Summary: license components for the alsa-utils package.
 Group: Default
@@ -118,8 +129,8 @@ services components for the alsa-utils package.
 
 
 %prep
-%setup -q -n alsa-utils-1.2.6
-cd %{_builddir}/alsa-utils-1.2.6
+%setup -q -n alsa-utils-1.2.7
+cd %{_builddir}/alsa-utils-1.2.7
 %patch1 -p1
 %patch2 -p1
 
@@ -128,7 +139,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1649965237
+export SOURCE_DATE_EPOCH=1654035516
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -148,10 +159,10 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1649965237
+export SOURCE_DATE_EPOCH=1654035516
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/alsa-utils
-cp %{_builddir}/alsa-utils-1.2.6/COPYING %{buildroot}/usr/share/package-licenses/alsa-utils/68c94ffc34f8ad2d7bfae3f5a6b996409211c1b1
+cp %{_builddir}/alsa-utils-1.2.7/COPYING %{buildroot}/usr/share/package-licenses/alsa-utils/68c94ffc34f8ad2d7bfae3f5a6b996409211c1b1
 %make_install
 %find_lang alsa-utils
 %find_lang alsaconf
@@ -200,7 +211,6 @@ cp %{_builddir}/alsa-utils-1.2.6/COPYING %{buildroot}/usr/share/package-licenses
 /usr/share/alsa/init/help
 /usr/share/alsa/init/info
 /usr/share/alsa/init/test
-/usr/share/alsa/speaker-test/sample_map.csv
 /usr/share/sounds/alsa/Front_Center.wav
 /usr/share/sounds/alsa/Front_Left.wav
 /usr/share/sounds/alsa/Front_Right.wav
@@ -210,6 +220,10 @@ cp %{_builddir}/alsa-utils-1.2.6/COPYING %{buildroot}/usr/share/package-licenses
 /usr/share/sounds/alsa/Rear_Right.wav
 /usr/share/sounds/alsa/Side_Left.wav
 /usr/share/sounds/alsa/Side_Right.wav
+
+%files lib
+%defattr(-,root,root,-)
+/usr/lib64/alsa-topology/libalsatplg_module_nhlt.so
 
 %files license
 %defattr(0644,root,root,0755)
