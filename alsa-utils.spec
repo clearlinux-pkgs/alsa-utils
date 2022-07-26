@@ -6,7 +6,7 @@
 #
 Name     : alsa-utils
 Version  : 1.2.7
-Release  : 32
+Release  : 33
 URL      : https://www.alsa-project.org/files/pub/utils/alsa-utils-1.2.7.tar.bz2
 Source0  : https://www.alsa-project.org/files/pub/utils/alsa-utils-1.2.7.tar.bz2
 Source1  : https://www.alsa-project.org/files/pub/utils/alsa-utils-1.2.7.tar.bz2.sig
@@ -22,6 +22,7 @@ Requires: alsa-utils-license = %{version}-%{release}
 Requires: alsa-utils-locales = %{version}-%{release}
 Requires: alsa-utils-man = %{version}-%{release}
 Requires: alsa-utils-services = %{version}-%{release}
+Requires: alsa-plugins
 Requires: dialog
 BuildRequires : alsa-lib-dev
 BuildRequires : automake
@@ -139,7 +140,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1654035516
+export SOURCE_DATE_EPOCH=1658861218
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -159,10 +160,10 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1654035516
+export SOURCE_DATE_EPOCH=1658861218
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/alsa-utils
-cp %{_builddir}/alsa-utils-1.2.7/COPYING %{buildroot}/usr/share/package-licenses/alsa-utils/68c94ffc34f8ad2d7bfae3f5a6b996409211c1b1
+cp %{_builddir}/alsa-utils-%{version}/COPYING %{buildroot}/usr/share/package-licenses/alsa-utils/68c94ffc34f8ad2d7bfae3f5a6b996409211c1b1
 %make_install
 %find_lang alsa-utils
 %find_lang alsaconf

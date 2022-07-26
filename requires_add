@@ -3,3 +3,5 @@
 #
 # required by alsaconf
 dialog
+# required by alsamixer
+alsa-plugins
