@@ -6,11 +6,11 @@
 # Source0 file verified with key 0x8380596DA6E59C91 (release@alsa-project.org)
 #
 Name     : alsa-utils
-Version  : 1.2.9
-Release  : 36
-URL      : https://www.alsa-project.org/files/pub/utils/alsa-utils-1.2.9.tar.bz2
-Source0  : https://www.alsa-project.org/files/pub/utils/alsa-utils-1.2.9.tar.bz2
-Source1  : https://www.alsa-project.org/files/pub/utils/alsa-utils-1.2.9.tar.bz2.sig
+Version  : 1.2.10
+Release  : 37
+URL      : https://www.alsa-project.org/files/pub/utils/alsa-utils-1.2.10.tar.bz2
+Source0  : https://www.alsa-project.org/files/pub/utils/alsa-utils-1.2.10.tar.bz2
+Source1  : https://www.alsa-project.org/files/pub/utils/alsa-utils-1.2.10.tar.bz2.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0
@@ -129,17 +129,20 @@ services components for the alsa-utils package.
 
 
 %prep
-%setup -q -n alsa-utils-1.2.9
-cd %{_builddir}/alsa-utils-1.2.9
+%setup -q -n alsa-utils-1.2.10
+cd %{_builddir}/alsa-utils-1.2.10
 %patch -P 1 -p1
 %patch -P 2 -p1
+pushd ..
+cp -a alsa-utils-1.2.10 buildavx2
+popd
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1689794786
+export SOURCE_DATE_EPOCH=1693924496
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -150,6 +153,16 @@ export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -f
 export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 %reconfigure --disable-static
 make  %{?_smp_mflags}
+unset PKG_CONFIG_PATH
+pushd ../buildavx2/
+export CFLAGS="$CFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3"
+export CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3"
+export FFLAGS="$FFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3"
+export FCFLAGS="$FCFLAGS -m64 -march=x86-64-v3"
+export LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3"
+%reconfigure --disable-static
+make  %{?_smp_mflags}
+popd
 
 %check
 export LANG=C.UTF-8
@@ -157,15 +170,21 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check
+cd ../buildavx2;
+make %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1689794786
+export SOURCE_DATE_EPOCH=1693924496
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/alsa-utils
 cp %{_builddir}/alsa-utils-%{version}/COPYING %{buildroot}/usr/share/package-licenses/alsa-utils/68c94ffc34f8ad2d7bfae3f5a6b996409211c1b1 || :
+pushd ../buildavx2/
+%make_install_v3
+popd
 %make_install
 %find_lang alsa-utils
 %find_lang alsaconf
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
@@ -177,6 +196,23 @@ cp %{_builddir}/alsa-utils-%{version}/COPYING %{buildroot}/usr/share/package-lic
 
 %files bin
 %defattr(-,root,root,-)
+/V3/usr/bin/aconnect
+/V3/usr/bin/alsabat
+/V3/usr/bin/alsactl
+/V3/usr/bin/alsaloop
+/V3/usr/bin/alsamixer
+/V3/usr/bin/alsatplg
+/V3/usr/bin/alsaucm
+/V3/usr/bin/amidi
+/V3/usr/bin/amixer
+/V3/usr/bin/aplay
+/V3/usr/bin/aplaymidi
+/V3/usr/bin/arecordmidi
+/V3/usr/bin/aseqdump
+/V3/usr/bin/aseqnet
+/V3/usr/bin/iecset
+/V3/usr/bin/nhlt-dmic-info
+/V3/usr/bin/speaker-test
 /usr/bin/aconnect
 /usr/bin/alsa-info.sh
 /usr/bin/alsabat
@@ -196,6 +232,7 @@ cp %{_builddir}/alsa-utils-%{version}/COPYING %{buildroot}/usr/share/package-lic
 /usr/bin/aseqdump
 /usr/bin/aseqnet
 /usr/bin/iecset
+/usr/bin/nhlt-dmic-info
 /usr/bin/speaker-test
 
 %files config
@@ -223,6 +260,7 @@ cp %{_builddir}/alsa-utils-%{version}/COPYING %{buildroot}/usr/share/package-lic
 
 %files lib
 %defattr(-,root,root,-)
+/V3/usr/lib64/alsa-topology/libalsatplg_module_nhlt.so
 /usr/lib64/alsa-topology/libalsatplg_module_nhlt.so
 
 %files license
@@ -249,6 +287,7 @@ cp %{_builddir}/alsa-utils-%{version}/COPYING %{buildroot}/usr/share/package-lic
 /usr/share/man/man1/aseqdump.1
 /usr/share/man/man1/aseqnet.1
 /usr/share/man/man1/iecset.1
+/usr/share/man/man1/nhlt-dmic-info.1
 /usr/share/man/man1/speaker-test.1
 /usr/share/man/man7/alsactl_init.7
 /usr/share/man/man8/alsaconf.8
