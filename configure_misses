@@ -4,7 +4,5 @@ Configure miss: CFLocaleCopyPreferredLanguages
 Configure miss: CFLocaleCopyPreferredLanguages
 Configure miss: ffado_streaming_init in -lffado
 Configure miss: ffado_streaming_init in -lffado
-Configure miss: snd_seq_client_info_get_midi_version in -lasound
-Configure miss: snd_seq_client_info_get_midi_version in -lasound
 Configure miss: x86_64-generic-linux-gnu-file
 Configure miss: x86_64-generic-linux-gnu-file
