@@ -9,7 +9,7 @@
 #
 Name     : alsa-utils
 Version  : 1.2.11
-Release  : 40
+Release  : 41
 URL      : https://www.alsa-project.org/files/pub/utils/alsa-utils-1.2.11.tar.bz2
 Source0  : https://www.alsa-project.org/files/pub/utils/alsa-utils-1.2.11.tar.bz2
 Source1  : https://www.alsa-project.org/files/pub/utils/alsa-utils-1.2.11.tar.bz2.sig
@@ -143,16 +143,13 @@ grep -E '^\[GNUPG:\] (GOODSIG|EXPKEYSIG) 8380596DA6E59C91' gpg.status
 cd %{_builddir}/alsa-utils-1.2.11
 %patch -P 1 -p1
 %patch -P 2 -p1
-pushd ..
-cp -a alsa-utils-1.2.11 buildavx2
-popd
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1713220707
+export SOURCE_DATE_EPOCH=1713448868
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -170,17 +167,6 @@ LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
 export GOAMD64=v2
 %reconfigure --disable-static
 make  %{?_smp_mflags}
-unset PKG_CONFIG_PATH
-pushd ../buildavx2/
-GOAMD64=v3
-CFLAGS="$CLEAR_INTERMEDIATE_CFLAGS -march=x86-64-v3 -Wl,-z,x86-64-v3 "
-CXXFLAGS="$CLEAR_INTERMEDIATE_CXXFLAGS -march=x86-64-v3 -Wl,-z,x86-64-v3 "
-FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS -march=x86-64-v3 -Wl,-z,x86-64-v3 "
-FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS -march=x86-64-v3 "
-LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS -march=x86-64-v3 "
-%reconfigure --disable-static
-make  %{?_smp_mflags}
-popd
 
 %check
 export LANG=C.UTF-8
@@ -188,8 +174,6 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check
-cd ../buildavx2;
-make %{?_smp_mflags} check || :
 
 %install
 export GCC_IGNORE_WERROR=1
@@ -206,20 +190,15 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1713220707
+export SOURCE_DATE_EPOCH=1713448868
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/alsa-utils
 cp %{_builddir}/alsa-utils-%{version}/COPYING %{buildroot}/usr/share/package-licenses/alsa-utils/68c94ffc34f8ad2d7bfae3f5a6b996409211c1b1 || :
 export GOAMD64=v2
-GOAMD64=v3
-pushd ../buildavx2/
-%make_install_v3
-popd
 GOAMD64=v2
 %make_install
 %find_lang alsa-utils
 %find_lang alsaconf
-/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
@@ -231,23 +210,6 @@ GOAMD64=v2
 
 %files bin
 %defattr(-,root,root,-)
-/V3/usr/bin/aconnect
-/V3/usr/bin/alsabat
-/V3/usr/bin/alsactl
-/V3/usr/bin/alsaloop
-/V3/usr/bin/alsamixer
-/V3/usr/bin/alsatplg
-/V3/usr/bin/alsaucm
-/V3/usr/bin/amidi
-/V3/usr/bin/amixer
-/V3/usr/bin/aplay
-/V3/usr/bin/aplaymidi
-/V3/usr/bin/arecordmidi
-/V3/usr/bin/aseqdump
-/V3/usr/bin/aseqnet
-/V3/usr/bin/iecset
-/V3/usr/bin/nhlt-dmic-info
-/V3/usr/bin/speaker-test
 /usr/bin/aconnect
 /usr/bin/alsa-info.sh
 /usr/bin/alsabat
@@ -295,7 +257,6 @@ GOAMD64=v2
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/alsa-topology/libalsatplg_module_nhlt.so
 /usr/lib64/alsa-topology/libalsatplg_module_nhlt.so
 
 %files license
