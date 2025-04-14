@@ -1,4 +1,2 @@
 mkdir.patch
 0001-Disable-the-axfer-tool.patch
-backport-f90124c73edd050b24961197a4abcf17e53b41a8.patch
-backport-6f7ce73159c02b726a6f0fe0acff961c95e337a8.patch
