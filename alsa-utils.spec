@@ -9,7 +9,7 @@
 #
 Name     : alsa-utils
 Version  : 1.2.14
-Release  : 46
+Release  : 47
 URL      : https://www.alsa-project.org/files/pub/utils/alsa-utils-1.2.14.tar.bz2
 Source0  : https://www.alsa-project.org/files/pub/utils/alsa-utils-1.2.14.tar.bz2
 Source1  : https://www.alsa-project.org/files/pub/utils/alsa-utils-1.2.14.tar.bz2.sig
